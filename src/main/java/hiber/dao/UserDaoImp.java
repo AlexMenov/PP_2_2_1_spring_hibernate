@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class UserDaoImp implements UserDao {
@@ -36,17 +38,10 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public User getUserByCarParams(String model, int series) {
-        String hql = """
-                from Car where model =:model and series =:series
-                """;
+    public User getUserByModelAndSeries(String model, int series) {
+        String hql = "from Car where model =:model and series =:series";
         Query<Car> query = getSessionFactory().getCurrentSession().createQuery(hql, Car.class);
         query.setParameter("model", model).setParameter("series", series);
-        List<Car> car = query.list();
-        //        Car car = query.uniqueResult();
-        if (car.isEmpty()) {
-            return new User();
-        }
-        return car.get(0).getUser();
+        return query.uniqueResult().getUser();
     }
 }

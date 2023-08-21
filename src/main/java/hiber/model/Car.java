@@ -1,10 +1,11 @@
 package hiber.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "cars", catalog = "users")
-public class Car {
+public class Car implements Serializable {
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

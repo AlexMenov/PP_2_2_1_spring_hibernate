@@ -36,9 +36,9 @@ public class MainApp {
       userService.listUsers().forEach(System.out::println);
 
       System.out.println("-----------------------usersbyparams-----------------------");
-      User user1956 = userService.getUserByCarParams("Жигули", 1956);
-      User user1961 = userService.getUserByCarParams("Москвич", 1961);
-      User user1999 = userService.getUserByCarParams("Запорожец", 1999);
+      User user1956 = userService.getUserByModelAndSeries("Жигули", 1956);
+      User user1961 = userService.getUserByModelAndSeries("Москвич", 1961);
+      User user1999 = userService.getUserByModelAndSeries("Запорожец", 1999);
       System.out.println(user1956);
       System.out.println(user1961);
       System.out.println(user1999);
